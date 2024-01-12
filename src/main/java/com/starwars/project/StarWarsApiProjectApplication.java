@@ -1,4 +1,4 @@
-package com.starwars.project.StarWarsApiProject;
+package com.starwars.project;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
