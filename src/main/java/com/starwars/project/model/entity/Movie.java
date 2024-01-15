@@ -6,7 +6,9 @@ import java.util.Date;
 import java.util.List;
 
 
-public record Film(String title,
+public record Movie(
+                    @JsonProperty("title")
+                     String name,
                      @JsonProperty("episode_id")
                      String episodeId,
                      @JsonProperty("opening_crawl")
