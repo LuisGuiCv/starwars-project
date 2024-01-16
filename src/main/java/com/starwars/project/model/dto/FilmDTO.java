@@ -4,7 +4,12 @@ import lombok.Data;
 
 import java.util.Date;
 import java.util.List;
-
+/**
+ * this FilmDTO will be used to transfer the movie information after the business logic in the Servic class has been applied.
+ * @author Luis Guillermo Cruz Vargas
+ * @version 1.0
+ * @since 01/15/2024
+ */
 @Data
 public class FilmDTO{
 

@@ -3,13 +3,19 @@ package com.starwars.project.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.starwars.project.model.dto.FilmDTO;
 import com.starwars.project.model.entity.Movie;
+import com.starwars.project.util.exception.StarWarsSequelsException;
 import com.starwars.project.util.helper.Constants;
 import com.starwars.project.util.helper.StarWarsHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.stream.Collectors;
-
+/**
+ * this is the Service class where the business logic of the application id coded.
+ * @author Luis Guillermo Cruz Vargas
+ * @version 1.0
+ * @since 01/15/2024
+ */
 
 @Service
 public class StarWarsServiceImpl implements StarWarsService{
@@ -19,6 +25,7 @@ public class StarWarsServiceImpl implements StarWarsService{
 
     @Autowired
     FilmDTO filmDTO;
+
     @Override
     public FilmDTO getMovieData(Integer movieId) throws JsonProcessingException {
         Movie retrievedfilm=(Movie) starWarsHelper.retrieveFromApi(movieId,Constants.FILMS);

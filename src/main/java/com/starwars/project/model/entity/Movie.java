@@ -5,7 +5,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 import java.util.List;
 
-
+/**
+ * this Entity object will be used to save the converted Json Response of the "movies" endpoint in the StarWars API
+ * @author Luis Guillermo Cruz Vargas
+ * @version 1.0
+ * @since 01/15/2024
+ */
 public record Movie(
                     @JsonProperty("title")
                      String name,

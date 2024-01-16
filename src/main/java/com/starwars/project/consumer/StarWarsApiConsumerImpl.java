@@ -13,7 +13,13 @@ import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 
 import java.util.HashMap;
-
+/**
+ * this class will be used to make the API call to the StarWars API and transforms the response
+ * into an Entity object.
+ * @author Luis Guillermo Cruz Vargas
+ * @version 1.0
+ * @since 01/15/2024
+ */
 @Component
 public class StarWarsApiConsumerImpl implements StarWarsApiConsumer {
     Logger logger = LoggerFactory.getLogger(StarWarsApiConsumerImpl.class);
