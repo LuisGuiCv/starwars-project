@@ -16,4 +16,5 @@ public final class Constants {
     public static final String STARSHIPS="starships";
 
     public static final String SPECIES="species";
+    public static final String GENERAL_RESPONSE="general_response";
 }

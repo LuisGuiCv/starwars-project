@@ -2,7 +2,10 @@ package com.starwars.project.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.starwars.project.consumer.StarWarsApiConsumerImpl;
+import com.starwars.project.model.dto.CharacterDTO;
 import com.starwars.project.model.dto.FilmDTO;
+
+import java.util.List;
 
 /**
  * this is the interface that will be used as a contract for the {@link StarWarsServiceImpl} class.
@@ -24,4 +27,7 @@ public interface StarWarsService {
      */
     FilmDTO getMovieData(Integer movieId) throws JsonProcessingException;
 
+    List<CharacterDTO> getCharactersByHeight(Double height) throws JsonProcessingException;
+
+    List<CharacterDTO> getCharactersByName(String letter) throws JsonProcessingException;
 }

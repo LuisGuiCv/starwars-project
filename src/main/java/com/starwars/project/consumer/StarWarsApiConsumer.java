@@ -1,6 +1,7 @@
 package com.starwars.project.consumer;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.starwars.project.model.entity.GeneralResponse;
 
 /**
  * this is the interface that will be used as a contract for the {@link StarWarsApiConsumerImpl} class.

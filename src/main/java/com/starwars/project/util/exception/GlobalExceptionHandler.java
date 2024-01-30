@@ -5,8 +5,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 
 /**
@@ -46,9 +48,14 @@ public class GlobalExceptionHandler {
      * this method will handle the StarWarsSequelsException.
      *
      */
-    @ExceptionHandler(StarWarsSequelsException.class)
-    public ResponseEntity<String> handleIncorrectMovieIdException(Exception e) {
+    @ExceptionHandler({StarWarsSequelsException.class,NoCharacterFoundException.class})
+    public ResponseEntity<String> handleIncorrectCustomException(Exception e) {
         logger.error(e.getMessage());
         return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(InvalidLetterException.class)
+    public ResponseEntity<String> handleIncorrectLetterException(Exception e) {
+        logger.error(e.getMessage());
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }

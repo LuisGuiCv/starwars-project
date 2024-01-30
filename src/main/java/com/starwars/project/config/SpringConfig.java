@@ -1,6 +1,7 @@
 package com.starwars.project.config;
 
 import com.starwars.project.consumer.StarWarsApiConsumerImpl;
+import com.starwars.project.model.dto.CharacterDTO;
 import com.starwars.project.model.dto.FilmDTO;
 import com.starwars.project.model.entity.*;
 import com.starwars.project.service.StarWarsServiceImpl;
@@ -9,7 +10,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+
 /**
  * this is the spring configuration class that will create the necessary beans of the project.
  * @author Luis Guillermo Cruz Vargas
@@ -33,6 +37,15 @@ public class SpringConfig {
     /**
      * here the filmDTO bean is created to be used as a singleton in the {@link StarWarsServiceImpl} class.
      */
+
+    @Bean
+    public List<CharacterDTO> characterDTOList() {
+        List<CharacterDTO> characterDTOList = new ArrayList<>();
+        return characterDTOList;}
+    @Bean
+    CharacterDTO characterDTO() {return new CharacterDTO();}
+
+
     @Bean
     FilmDTO filmDTO(){
         return new FilmDTO();
@@ -54,6 +67,7 @@ public class SpringConfig {
         entities.put(Constants.VEHICLES, Vehicle.class);
         entities.put(Constants.STARSHIPS, Starship.class);
         entities.put(Constants.SPECIES, Species.class);
+        entities.put(Constants.GENERAL_RESPONSE, GeneralResponse.class);
         return entities;
     };
 }

@@ -26,6 +26,7 @@ public class StarWarsHelper {
     private String starWarsApiUrl;
     @Autowired
     StarWarsApiConsumerImpl starWarsApiConsumerImpl;
+
     /**
      * this method will take a list of StarWars API "people" urls and will transform this url's
      * into People Entity Objects and save them in a People Entity list
@@ -34,7 +35,7 @@ public class StarWarsHelper {
      * @param characterList -> this is the list that will be transformed using streams
      * @return this will return a People Entity list
      */
-    public List<People> retrieveCharacterList(List<String> characterList)  {
+    public List<People> retrieveCharacterList(List<String> characterList) {
         logger.info("retrieving character's information from Star Wars API");
         List<People> retrievedCharactersFromApi = characterList.stream().map(character -> {
             People people = null;
@@ -46,7 +47,7 @@ public class StarWarsHelper {
             return people;
 
         }).collect(Collectors.toList());
-        logger.info("characters retrieved: {}",retrievedCharactersFromApi);
+        logger.info("characters retrieved: {}", retrievedCharactersFromApi);
         return retrievedCharactersFromApi;
     }
 
@@ -57,7 +58,7 @@ public class StarWarsHelper {
      *
      * @param planetList -> this is the list that will be transformed using streams
      * @return this will return a Planet Entity list
-    */
+     */
     public List<Planet> retrievePlanetsList(List<String> planetList) {
         logger.info("retrieving planet's information from Star Wars API");
         List<Planet> retrievedPlanetsList = planetList.stream().map(p -> {
@@ -70,9 +71,10 @@ public class StarWarsHelper {
             return planet;
 
         }).collect(Collectors.toList());
-        logger.info("planets retrieved: {}",retrievedPlanetsList);
+        logger.info("planets retrieved: {}", retrievedPlanetsList);
         return retrievedPlanetsList;
     }
+
     /**
      * this method will take a list of StarWars API "vehicles" urls and will transform this url's
      * into Vehicle Entity Objects and save them in a Vehicle Entity list
@@ -93,9 +95,10 @@ public class StarWarsHelper {
             return vehicle;
 
         }).collect(Collectors.toList());
-        logger.info("vehicles retrieved: {}",retrievedVehiclesList);
+        logger.info("vehicles retrieved: {}", retrievedVehiclesList);
         return retrievedVehiclesList;
     }
+
     /**
      * this method will take a list of StarWars API "starships" urls and will transform this url's
      * into Starships Entity Objects and save them in a Starship Entity list
@@ -116,9 +119,10 @@ public class StarWarsHelper {
             return starship;
 
         }).collect(Collectors.toList());
-        logger.info("starships retrieved: {}",retrievedStarshipsList);
+        logger.info("starships retrieved: {}", retrievedStarshipsList);
         return retrievedStarshipsList;
     }
+
     /**
      * this method will take a list of StarWars API "species" urls and will transform this url's
      * into Species Entity Objects and save them in a Species Entity list
@@ -140,41 +144,48 @@ public class StarWarsHelper {
             return species;
 
         }).collect(Collectors.toList());
-        logger.info("species retrieved: {}",retrievedSpeciesList);
+        logger.info("species retrieved: {}", retrievedSpeciesList);
         return retrievedSpeciesList;
     }
+
     /**
      * this method will be the one that prepares the url,then it will use the makeApiCall(url)
      * method to make the API call to StarWars API.then
      * it will use the convertJsonToObject(jsonResponse,apiParam)
      * to transform the result into an Entity Class.
      *
-     * @param id -> this id will be used to select the specific response from the StarWarsAPI
+     * @param id       -> this id will be used to select the specific response from the StarWarsAPI
      * @param apiParam -> this will be used to prepare the url and will be used for the convertJsonObject method
      * @return this will return the mapped Entity object
      * @throws JsonProcessingException this exception will trigger if there is an issue while converting the Json Response to a Java class.
      */
 
-    public Object retrieveFromApi(Integer id,String apiParam) throws JsonProcessingException {
-        String url=starWarsApiUrl + "/"+ apiParam +"/" + id;
-        logger.info("making client API call to StarWars API with the following URL {}",url);
-        String jsonResponse= starWarsApiConsumerImpl.makeApiCall(url);
-        logger.info("Succesfully fetched Response from API with the following response: {}",jsonResponse);
-        return starWarsApiConsumerImpl.convertJsonToObject(jsonResponse,apiParam);
+    public Object retrieveFromApi(Integer id, String apiParam) throws JsonProcessingException {
+        String url = starWarsApiUrl + "/" + apiParam + "/" + id;
+        logger.info("making client API call to StarWars API with the following URL {}", url);
+        String jsonResponse = starWarsApiConsumerImpl.makeApiCall(url);
+        logger.info("Succesfully fetched Response from API with the following response: {}", jsonResponse);
+        return starWarsApiConsumerImpl.convertJsonToObject(jsonResponse, apiParam);
     }
+
     /**
      * this method will be the one to use the makeApiCall(url)
      * method to make the API call to StarWars API.
      *
-     * @param url -> this is the url that will be used to make the StarWarsAPI call
+     * @param url      -> this is the url that will be used to make the StarWarsAPI call
      * @param apiParam -> this will be used to prepare the url and will be used for the convertJsonObject method
      * @return this will return the mapped Entity list
      * @throws JsonProcessingException this exception will trigger if there is an issue while converting the Json Response to a Java class.
      */
 
-    public Object retrieveFromApi(String url,String apiParam) throws JsonProcessingException {
-        logger.info("making client API call to StarWars API with the following URL {}",url);
-        String jsonResponse= starWarsApiConsumerImpl.makeApiCall(url);
-        return starWarsApiConsumerImpl.convertJsonToObject(jsonResponse,apiParam);
+    public Object retrieveFromApi(String url, String apiParam) throws JsonProcessingException {
+        logger.info("making client API call to StarWars API with the following URL {}", url);
+        String jsonResponse = starWarsApiConsumerImpl.makeApiCall(url);
+        return starWarsApiConsumerImpl.convertJsonToObject(jsonResponse, apiParam);
+    }
+
+    public List<Object> extractResponse(GeneralResponse generalResponse) {
+        List<Object> resultList = generalResponse.results();
+        return resultList;
     }
 }
