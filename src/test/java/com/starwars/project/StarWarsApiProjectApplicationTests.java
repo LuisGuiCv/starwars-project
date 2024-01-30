@@ -1,4 +1,4 @@
-package com.starwars.project.StarWarsApiProject;
+package com.starwars.project;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
